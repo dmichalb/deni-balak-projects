@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="utf-8">
+        <title>Airworth Aircraft Status</title>
+        <link rel="stylesheet" href="css/home.css" type="text/css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <style media="screen">
+          body {
+            background-image: url('images/5.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+          }
+          h3{
+            color: #F0FFF0;
+          }
+        </style>
+    </head>
+    <header>
+        <h1 class="pageTitle">Update Aircraft Status</h1>
+    </header>
+    <body>
+        <div class="container">
+            
+            <div class="nav">
+                <div class="col-md-2 nav-item">
+                    <a href="#" th:href="@{/}"><button type="button" class="btn" id="homeBtn">Home</button></a>
+                </div>
+                <br><br>
+                <hr>
+            </div>
+            
+            <div class="row">
+                <h3>Update Plane Status</h3>
+            </div>
+            
+            <div class="row">
+                <form type="form" action="editPlane" method="POST" class="form-row col-md-12">
+                    <input type="hidden" id="maintainerUsername" name="maintainerUsername" th:value="${maintainer.username}"/>
+                     <div class="form-row col-md-12" style="width: 100%;">
+                        <div class="form-group col-md-6">
+                            <label for="tailNumber" style="color: #F0FFF0;">Tail Number:</label>
+                            <input th:value="${plane.tailNumber}" type="text" 
+                                   class="form-control" id="tailNumber" name="tailNumber" readonly/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="year" style="color: #F0FFF0;">Year:</label>
+                            <input th:value="${plane.year}" type="text" 
+                                   class="form-control" id="year" name="year" readonly/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="make" style="color: #F0FFF0;">Make:</label>
+                            <input th:value="${plane.make}" type="text" 
+                                   class="form-control" id="make" name="make" readonly/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="model" style="color: #F0FFF0;">Model:</label>
+                            <input th:value="${plane.model}" type="text" 
+                                   class="form-control" id="model" name="model" readonly/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="lastServicedDate" style="color: #F0FFF0;">Last Serviced Date</label>
+                            <input th:value="${plane.lastServicedDate}" type="date"
+                                   class="form-control" id="lastServicedDate" name="lastServicedDate"/>
+                        </div>
+                         <div class="form-group col-md-6">
+                            <label for="nextServiceDate" style="color: #F0FFF0;">Next Service Date</label>
+                            <input th:value="${plane.nextServiceDate}" type="date"
+                                   class="form-control" id="nextServiceDate" name="nextServiceDate"/>
+                        </div>
+                         <div class="form-group col-md-9">
+                            <label for="directives" style="color: #F0FFF0;">Airworthiness Directives</label>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 20%">Number</th>
+                                        <th style="width: 30%">Subject</th>
+                                        <th style="width: 40%">Compliance</th>
+                                        <th style="width: 10%">Not Complied</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="directives : ${planeDirectives}">
+                                        <td th:text="${directives.adNumber}">Number</td>
+                                        <td th:text="${directives.subject}">Subject</td>
+                                        <td th:text="${directives.compliance}">Compliance</td>
+                                        <td>
+                                            <input type="checkbox" th:name="${'notCompliedWith_' + directives.id}"
+                                                   class="form-check-input" th:checked="${directives.notCompliedWith}">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                     </div>
+                    <div class="form-group col-md-6">
+                        <input type="hidden" th:value="${maintainer.username}">
+                        <button id="maintianerSave" class="col-md-3 btn">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <footer style="text-align: center; color: #F0FFF0; font-weight: bold; padding-top: 20px;">© Copyright 2020 Deni Balak</footer>
+        <script src="js/maintainer.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>

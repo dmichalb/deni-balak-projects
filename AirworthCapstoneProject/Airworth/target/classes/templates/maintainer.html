@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="utf-8">
+        <title>Airworth Maintainer</title>
+        <link rel="stylesheet" href="css/home.css" type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <style media="screen">
+          body {
+            background-image: url('images/5.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+          }
+          h2{
+            color: #F0FFF0;
+          }
+
+        </style>
+    </head>
+    <header>
+        <h1 class="pageTitle">For Maintainers</h1>
+        <hr>
+    </header>
+    <body>
+        <div class="container">
+
+            <div class="nav">
+                <div class="col-md-2 nav-item">
+                    <a href="#" th:href="@{/}"><button type="button" class="btn" id="homeBtn">Home</button></a>
+                </div>
+                <br><br>
+                <hr>
+            </div>
+                <div class="maintainerView col-lg">
+                <div class="maintainerTable col-md-6">
+                    <div class="row col-lg" style="width: 100%;">
+                        <h2>Airworthy</h2>
+                        <input type="hidden" id="maintainerUsername" name="maintainerUsername" th:value="${maintainer.username}"/>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr class="headers">
+                                    <th>Tail Number</th>
+                                    <th>Year</th>
+                                    <th>Make</th>
+                                    <th>Model</th>
+                                    <th>Last Serviced</th>
+                                </tr>
+                                <tr th:each="plane : ${airworthyPlanes}" class="rows">
+                                    <td th:text="${plane.tailNumber}">Tail Number</td>
+                                    <td th:text="${plane.year}">Year</td>
+                                    <td th:text="${plane.make}">Make</td>
+                                    <td th:text="${plane.model}">Model</td>
+                                    <td th:text='${plane.lastServicedDate}'>Last Serviced</td>
+                                    
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="maintainerTable col-md-6">
+                    <div class="row col-md" style="width: 100%">
+                        <h2>Grounded</h2>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr class="headers">
+                                    <th>Tail Number</th>
+                                    <th>Year</th>
+                                    <th>Make</th>
+                                    <th>Model</th>
+                                    <th>Last Serviced</th>
+                                    
+                                </tr>
+                                <tr th:each="plane : ${groundedPlanes}" class="groundedPlanes">
+                                    <td><a href="#" th:text="${plane.tailNumber}" th:href="@{editPlane(tailNumber=${plane.tailNumber}, maintainerUsername=${maintainer.username})}">Tail Number</a></td>
+                                    <td th:text="${plane.year}">Year</td>
+                                    <td th:text="${plane.make}">Make</td>
+                                    <td th:text="${plane.model}">Model</td>
+                                    <td th:text='${plane.lastServicedDate}'>Last Serviced</td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
+        
+    <footer style="text-align: center; color: #F0FFF0; font-weight: bold; padding-top: 20px;">© Copyright 2020 Deni Balak</footer>
+    <script src="js/maintainer.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

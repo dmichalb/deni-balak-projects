@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="utf-8">
+        <title>Airworth Admin</title>
+        <link rel="stylesheet" href="css/home.css" type="text/css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <style media="screen">
+          body {
+            background-image: url('images/0.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+          }
+          h3{
+            color: #F0FFF0;
+          }
+        </style>
+    </head>
+    <header>
+        <h1 class="pageTitle">Admin</h1>
+    </header>
+    <hr>
+    <br>
+    <body>
+        <div class="container">
+            <div class="nav">
+                <div class="col-md-2 nav-item">
+                    <a href="#" th:href="@{/}"><button type="button" class="btn" id="homeBtn">Home</button></a>
+                </div>
+                <br><br>
+                <hr>
+            </div>
+            
+            
+            <div class="row col-md-12">
+            <div class="container col-md-3">
+                <div class="col-md">
+                <a href="#" th:href="@{addMaintainer}" id="addMaintainerLink"><button type="button" class="btn col-md" id="addMaintainer">Create Maintainer</button></a>
+                </div>
+            </div>
+            <div class="container col-md-3">
+                <div class="col-md">
+                <a href="#" th:href="@{addAdmin}" id="addAdminLink"><button type="button" class="btn col-md" id="addAdmin">Create Admin</button></a>
+                </div>
+            </div>
+            </div>
+            
+            
+        <div class="adminView col-lg">
+                <div class="planeTable col-md-6">
+                    <div class="row col-lg" style="width: 100%;">
+                        <h3>Airworthy</h3>
+                            <input type="hidden" id="adminUsername" name="adminUsername" th:value="${admin.username}"/>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr class="headers">
+                                        <th>Tail Number</th>
+                                        <th>Year</th>
+                                        <th>Make</th>
+                                        <th>Model</th>
+                                        <th>Last Serviced</th>
+                                        <th>Schedule Maintenance</th>
+                                    </tr>
+                                    <tr th:each="plane : ${airworthyPlanes}" class="rows">
+                                        <td th:text="${plane.tailNumber}">Tail Number</td>
+                                        <td th:text="${plane.year}">Year</td>
+                                        <td th:text="${plane.make}">Make</td>
+                                        <td th:text="${plane.model}">Model</td>
+                                        <td th:text='${plane.lastServicedDate}'>Last Serviced</td>
+                                        <td>
+                                            <a href="#" th:href="@{adminEditPlane(tailNumber=${plane.tailNumber}, adminUsername=${admin.username})}" >
+                                                <button style="background-color: #F0F8FF;" type="submit" class="btn col-md-12">Schedule Maintenance</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </thead>
+                            </table>
+                    </div>
+                </div>
+                <div class="planeTable col-md-6">
+                    <div class="row col-md" style="width: 100%">
+                        <h3>Grounded</h3>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr class="headers">
+                                    <th>Tail Number</th>
+                                    <th>Year</th>
+                                    <th>Make</th>
+                                    <th>Model</th>
+                                    <th>Last Serviced</th>
+                                </tr>
+                                <tr th:each="plane : ${groundedPlanes}" class="rows">
+                                    <td th:value="${plane.tailNumber}" th:text="${plane.tailNumber}">Tail Number</a></td>
+                                    <td th:text="${plane.year}">Year</td>
+                                    <td th:text="${plane.make}">Make</td>
+                                    <td th:text="${plane.model}">Model</td>
+                                    <td th:text='${plane.lastServicedDate}'>Last Serviced</td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <hr>
+            </div>
+            <div class="maintainerTable col-md-6">
+                <div class="row col-md" style="width: 100%">
+                    <h3>Maintainers</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class="headers">
+                                <th style="width: 20%;">Name</th>
+                                <th style="width: 30%;">Username</th>
+                                <th style="width: 20%;"> </th>
+                                <th style="width: 30%;"> </th>
+                            </tr>
+                            <tr th:each="maintainer : ${maintainers}" class="rows">
+                                <td th:text="${maintainer.firstName + ' ' + maintainer.lastName}">Name</td>
+                                <td th:text="${maintainer.username}">User Name</a></td>
+                                <td>
+                                    <form type="form" action="deleteMaintainer" method="POST" id="deleteMaintainer">
+                                        <input type="hidden" id="username" name="username" th:value="${maintainer.username}"/>
+                                        <button class="btn btn-danger col-md-8">Delete</button>
+                                    </form>
+                                </td>
+                                <td><a href="#" th:href="@{editMaintainer(username=${maintainer.username}, adminUsername=${admin.username})}" ><button style="background-color: #F0F8FF;" type="submit" class="btn col-md-12">Update Maintainer</button></a></td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            
+            
+            <div class="adminTable col-md-6">
+                <div class="row col-md" style="width: 100%">
+                    <h3>Admins</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class="headers">
+                                 <th style="width: 20%;">Name</th>
+                                <th style="width: 30%;">Username</th>
+                                <th style="width: 20%;"> </th>
+                                <th style="width: 30%;"> </th>
+                            </tr>
+                            <tr th:each="admin : ${admins}" class="rows">
+                                <td th:text="${admin.firstName + ' ' + admin.lastName}">Name</td>
+                                <td th:text="${admin.username}">User Name</a></td>
+                                <td>
+                                    <form type="form" action="deleteAdmin" method="POST" id="deleteMaintainer">
+                                        <input type="hidden" id="username" name="username" th:value="${admin.username}"/>
+                                        <button class="btn btn-danger col-md-8">Delete</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <a href="#" th:href="@{editAdmin(username=${admin.username})}" ><button style="background-color: #F0F8FF;" type="submit" class="btn col-md">Update Admin</button></a></td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+       
+        <footer style="text-align: center; color: #F0FFF0; font-weight: bold; padding-top: 20px;">© Copyright 2020 Deni Balak</footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+
+</html>

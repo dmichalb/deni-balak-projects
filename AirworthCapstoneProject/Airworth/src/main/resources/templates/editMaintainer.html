@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta charset="utf-8">
+        <title>Airworth Edit Maintainer</title>
+        <link rel="stylesheet" href="css/home.css" type="text/css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <style media="screen">
+          body {
+            background-color: #2F4F4F;
+          }
+          h3{
+            color: #F0FFF0;
+          }
+        </style>
+    </head>
+    <header>
+        <h1 class="pageTitle">Edit Maintainer</h1>
+    </header>
+    <body>
+        <div class="container">
+            
+            <div class="nav">
+                <div class="col-md-2 nav-item">
+                    <a href="#" th:href="@{/}"><button type="button" class="btn" id="homeBtn">Home</button></a>
+                </div>
+                <div class="col-md-2 nav-item">
+                </div>
+                <br><br>
+                <hr>
+            </div>
+            
+            <div class="row">
+                <h3>Update Plane Status</h3>
+            </div>
+            
+            <div class="row">
+                <form type="form" action="editMaintainer" method="POST" id="editMaintainer" class="form-row col-md-12">
+                    <input type="hidden" id="adminUsername" name="adminUsername" th:value="${admin.username}"/>
+                    <div class="form-row col-md-12" style="width: 100%;">
+                        <div class="form-group col-md-6">
+                            <label for="username" style="color: #F0FFF0;">Username:</label>
+                            <input th:value="${maintainer.username}" type="text" 
+                                   class="form-control" id="username" name="username" readonly/>
+                            
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="firstName" style="color: #F0FFF0;">First Name: </label>
+                            <input th:value="${maintainer.firstName}" type="text" 
+                                   class="form-control" id="firstName" name="firstName"/>
+                            <div th:if="${#fields.hasErrors('maintainer.firstName')}">
+                                <p th:each="error : ${#fields.errors('maintainer.firstName')}" 
+                                   class="alert alert-danger" th:text="${error}">Invalid Username</p>                                
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="lastName" style="color: #F0FFF0;">Last Name: </label>
+                            <input th:value="${maintainer.lastName}" type="text" 
+                                   class="form-control" id="lastName" name="lastName"/>
+                            <div th:if="${#fields.hasErrors('maintainer.lastName')}">
+                                <p th:each="error : ${#fields.errors('maintainer.lastName')}" 
+                                   class="alert alert-danger" th:text="${error}">Invalid Username</p>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="hidden" th:value="${admin.username}">
+                        <button type="submit" class="col-md-3 btn">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <footer style="text-align: center; color: #F0FFF0; font-weight: bold; padding-top: 20px;">© Copyright 2020 Deni Balak</footer>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>
