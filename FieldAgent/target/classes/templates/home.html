@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        
+                 
+        <title>Home</title>
+    </head>
+    <body style="background-color: #2F4F4F;">
+        <div class="container">
+            <div class="row" style="padding-top: 20px;">
+                <h1 class="col-md-10" style="color: #F0FFF0;">Home</h1>
+                <button type="submit" class="col-md-2 btn" style="color: #F0FFF0; background-color: #8FBC8F;"><a style="color: #F0FFF0;" href="#" th:href="@{addAgent}">Add An Agent</a></button>
+            </div>
+            <br>
+            
+            <div class="row">
+                <table class="table table-striped">
+                    <thead>
+                        <tr style="width: 100%; background-color: #DCDCDC;">
+                            <th style="width: 40%; font-size: 20px; color: #2F4F4F;">Field Agent</th>
+                            <th style="width: 40%; font-size: 20px; color: #2F4F4F;;">Agency</th>
+                            <th style="width: 10%;"> </th>
+                            <th style="width: 10%;"> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="agent : ${agents}" style="background-color: #8FBC8F; color: #F0FFF0;">
+                            <td><a href="#" th:text="${agent.firstName + ' ' + agent.lastName}" th:href="@{updateAgent(identifier=${agent.identifier})}" style="color: #7FFFD4;">Name</a></td>
+                            <td th:text="${agent.agency.name}" style="color: #F0FFF0;">Agency</td>
+                            <td><a style="color: #FFFFFF; background-color: #CD5C5C;" href="#" th:href="@{delete(identifier=${agent.identifier})}" <button class="btn btn-danger">Delete</button></a></td>
+                            <td><a style="color: #FFFFFF; background-color: #A9A9A9;" href="#" th:href="@{addAssignment(identifier=${agent.identifier})}" <button class="btn btn-secondary">Add An Assignment</button></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                
+            
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+</html>

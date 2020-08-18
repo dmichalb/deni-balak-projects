@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        
+                 
+        <title>Assignment</title>
+    </head>
+    <body style="background-color: #2F4F4F;">
+        <div class="container">
+            <div class="row" style="padding-top: 20px;">
+                <h1 class="col-md-10" style="color: #F0FFF0;">Assignment</h1>
+            </div>
+        
+            <div>
+                <form type="form" action="updateAnAssignment" method="POST" class="form-row">
+                    <div class="form-row col-md-12" style="width: 100%;">
+                        <div class="form-group col-md-6">
+                          <input type="hidden" id="assignmentId" name="assignmentId" th:value="${assignment.assignmentId}"/>
+                            <label for="agent" style="color: #F0FFF0;">Field Agent:</label>
+                                 <select class="form-control" name="agent" id="agent" required>
+                                     <option selected th:value="${assignment.agent.identifier}"
+                                         th:text="${assignment.agent.firstName + ' ' + assignment.agent.lastName}">-Select-</option>
+                                     <option th:each="agent : ${agentList}" 
+                                            th:value="${agent.identifier}" 
+                                            th:text="${agent.firstName + ' ' + agent.lastName}">
+                                        Agent</option>
+                                 </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="agent" style="color: #F0FFF0;">Country:</label>
+                                <select class="form-control" name="country" id="country" required>
+                                    <option selected th:value="${assignment.country.countryCode}"
+                                            th:text="${assignment.country.name}">-Select-</option>
+                                    <option th:each="country : ${countryList}" 
+                                            th:value="${country.countryCode}" 
+                                            th:text="${country.name}">
+                                        Country</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="form-row col-md-12" style="width: 100%;">
+                        <div class="form-group col-md-6">
+                            <label for="startDate" style="color: #F0FFF0;">Start Date: </label>
+                            <input th:value="${assignment.startDate}" type="date"
+                                   class="form-control" name="startDate" id="startDate" required/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="projectedEnd" style="color: #F0FFF0;">Projected End Date: </label>
+                            <input th:value="${assignment.projectedEndDate}" type="date"
+                                   class="form-control" name="projectedEndDate" id="projectedEndDate" required/>
+                        </div>
+                    </div>
+                    <div class="form-row col-md-12" style="width: 100%;">
+                        <div class="form-group col-md-12">
+                            <label for="actualEnd" style="color: #F0FFF0;">Actual End Date: </label>
+                            <input th:value="${assignment.actualEndDate}" type="date" 
+                                   class="form-control" name="actualEndDate" id="actualEndDate"/>
+                        </div>
+                    </div>
+                    <div class="form-row col-md-12" style="width: 100%;">
+                        <div class="form-group col-md-12">
+                            <label for="notes" style="color: #F0FFF0;">Notes: </label>
+                            <textarea class="form-control" name="notes" id="notes" th:text="${assignment.notes}"></textarea>
+                        </div>
+                        <div class="form-row col-md-12">
+                            
+                            <button class="col-md-1 btn" style="color: #F0FFF0; background-color: #8FBC8F;">Save</button>
+                            <span style="padding-left: 10px; padding-right: 10px;"></span>
+                            <a href="#" th:href="@{/}"<button class="col-md-1 btn" style="color: #2F4F4F;; background-color: #DCDCDC;">Cancel</button></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+</html>

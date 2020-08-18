@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        
+                 
+        <title>Assignment</title>
+    </head>
+    <body style="background-color: #2F4F4F;">
+        <div class="container">
+            <div class="row" style="padding-top: 20px;">
+                <h1 class="col-md-10" style="color: #F0FFF0;">Assignment</h1>
+            </div>
+            
+            <div class="row">
+                <form type="form" action="addAssignment" method="POST" class="form-row col-md-12">
+                     <div class="form-row col-md-12" style="width: 100%;">
+                        <div class="form-group col-md-6">
+                            <label for="agent" style="color: #F0FFF0;">Field Agent:</label>
+                            <select class="form-control" name="identifier">
+                                <option selected disabled>- Select -</option>
+                                 <option th:each="agent : ${agentList}" 
+                                            th:value="${agent.identifier}" 
+                                            th:text="${agent.firstName + ' '
+                                                + agent.lastName}">
+                                         Name</option>
+                            </select>
+                            <div th:if="${#fields.hasErrors('assignment.agent')}">
+                                <p th:each="error : ${#fields.errors('assignment.agent')}" 
+                                   class="alert alert-danger" th:text="${error}">Bad Agent</p>                                
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="country" style="color: #F0FFF0;">Country:</label>
+                            <select class="form-control" name="countryCode">
+                                <option selected disabled>- Select -</option>
+                                 <option th:each="country : ${countryList}" 
+                                            th:value="${country.countryCode}" 
+                                            th:text="${country.name}">
+                                        Country</option>
+                            </select>
+                            <div th:if="${#fields.hasErrors('assignment.country')}">
+                                <p th:each="error : ${#fields.errors('assignment.country')}" 
+                                   class="alert alert-danger" th:text="${error}">Bad Country</p>                                
+                            </div>
+                        </div>
+                         <div class="form-group col-md-6">
+                            <label for="startDate" style="color: #F0FFF0;">Start Date: </label>
+                            <input type="date" class="form-control" name="startDate" id="startDate"/>
+                            <div th:if="${#fields.hasErrors('assignment.startDate')}">
+                                <p th:each="error : ${#fields.errors('assignment.startDate')}" 
+                                   class="alert alert-danger" th:text="${error}">Bad Start Date</p>                                
+                            </div>
+                            
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="projectedEnd" style="color: #F0FFF0;">Projected End Date: </label>
+                            <input type="date" class="form-control" name="projectedEndDate" id="projectedEndDate"/>
+                            <div th:if="${#fields.hasErrors('assignment.projectedEndDate')}">
+                                <p th:each="error : ${#fields.errors('assignment.projectedEndDate')}" 
+                                   class="alert alert-danger" th:text="${error}">Bad Projected End Date</p>                                
+                            </div>
+                        </div>
+                        
+                        <div class="form-group col-md-12">
+                            <label for="actualEnd" style="color: #F0FFF0;">Actual End Date: </label>
+                            <input type="date" class="form-control" name="actualEndDate" id="actualEndDate"/>
+                            <div th:if="${#fields.hasErrors('assignment.actualEndDate')}">
+                                <p th:each="error : ${#fields.errors('assignment.actualEndDate')}" 
+                                   class="alert alert-danger" th:text="${error}">Bad Actual End Date</p>                                
+                            </div>
+                        </div>
+                        
+                        <div class="form-group col-md-12">
+                            <label for="notes" style="color: #F0FFF0;">Notes: </label>
+                            <textarea class="form-control" name="notes" id="notes"></textarea>
+                        </div>
+                    </div>
+                    <br/>
+                    
+                    <button class="col-md-1 btn" style="color: #F0FFF0; background-color: #8FBC8F;">Save</button>
+                    <span style="padding-left: 10px; padding-right: 10px;"></span>
+                    <a href="#" th:href="@{/}"<button class="col-md-1 btn" style="color: #2F4F4F; background-color: #DCDCDC;">Cancel</button></a>
+                    
+                </form>
+            </div>
+            
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+</html>

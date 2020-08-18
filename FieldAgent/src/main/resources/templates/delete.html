@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        
+                 
+        <title>Delete Agent</title>
+    </head>
+    <body style="background-color: #2F4F4F;">
+        <div class="container">
+            <div class="row" style="padding-top: 20px;">
+                <h1 class="col-md-10" style="color: #F0FFF0;" th:value="${agent.identifier}" th:text="'Delete ' + ${agent.firstName + ' ' + agent.lastName} + '?'">Delete Agent</h1>
+            </div>
+            <div class="row information">
+                <div class="col-md-10">
+                    <p style="color: #F0FFF0;" th:text="${'Assignments: ' + assignmentCount}">Assignments:</p>
+                </div>
+                <div class="col-md-10">
+                    <p style="color: #F0FFF0;">Deletions are permanent.</p>
+                </div>
+                <div class="col-md-10">
+                    <p style="color: #F0FFF0;" th:text="'Both ' + ${agent.firstName + ' ' + agent.lastName} 
+                        + ' and his/her ' + ${assignmentCount} + ' will be deleted forever.'">Will be deleted forever.</p>
+                    <p style="color: #F0FFF0;">Continue?</p>
+                </div>
+                <br/>
+                <div class="col-md-10">
+                    <form type="form" action="deleteAgent" method="POST" class="form-row">
+                        <input type="hidden" id="identifier" name="identifier" th:value="${agent.identifier}"/>
+                        <button class="btn btn-danger" style="color: #FFFFFF; background-color: #CD5C5C;">Delete</button>
+                        <span style="padding-left: 10px; padding-right: 10px;"></span>
+                        <a href="#" th:href="@{/}"<button  class="col-md-1 btn" style="color: #2F4F4F; background-color: #DCDCDC;">Cancel</button></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+</html>
