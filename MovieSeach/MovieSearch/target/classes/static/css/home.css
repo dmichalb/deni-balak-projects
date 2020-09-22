@@ -1,0 +1,166 @@
+body, html {
+    height: 100%;
+}
+fieldset{
+  border: none;
+}
+.background {
+    background-image: url('img/movies.jpg');
+    height: 100%;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: auto;
+    overflow-x: scroll;
+}
+.btn{
+  padding: 5px;
+  width: 100%;
+}
+.favBtn, .homeBtn,
+#seeAll, #bookmarkedOnly{
+  padding: 20px;
+  width: 90%;
+  font-size: 20px;
+}
+.btn:hover,.favBtn:hover, 
+#saveBtn:hover, .homeBtn:hover
+#seeAll:hover, #bookmarkedOnly:hover
+{
+  cursor: pointer;
+}
+.container, .container2{
+    justify-content: center;
+    border-color: black;
+    border-style: dashed;
+}
+.favorites, .homePg{
+  margin: auto;
+  width: 15%;
+  padding-top: 20px;
+}
+.saveClass{
+  padding-top: 32px;
+}
+#pageTitle, #tagLine {
+    text-align: center;
+}
+#pageTitle{
+  font-family: 'Limelight', cursive;
+  font-size: 75px;
+}
+#tagLine{
+  font-family: 'Raleway', sans-serif;
+  font-size: 17px;
+  font-style: italic;
+}
+#formGroup {
+  margin: auto;
+  width: 20%;
+  padding: 10px;
+}
+#formGroup2 {
+  margin: auto;
+  width: 5%;
+  padding: 10px;
+}
+#movie {
+  width: 75%;
+  height: 25px;
+  border-radius: 3px;
+  border-color: #DCDCDC;
+}
+#saveBtn{
+  width: 5%;
+}
+#result{
+    font-family: 'Raleway', sans-serif;
+}
+
+/*CSS for table*/
+table {
+  border-collapse: collapse;
+}
+table, th, td {
+  border: 3px solid black;
+}
+table{
+    width: 100%;
+}
+th, td {
+  text-align: center;
+}
+th{
+    height: 50px;
+    background-color: #ADD8E6;
+}
+tr:nth-child(odd) {
+    background-color: #FDF5E6;
+}
+tr:nth-child(even){
+    background-color: #ADD8E6;
+}
+#deleteBtn{
+    background-color: #FF6347;
+    color: white;
+    border-radius: 2px;
+}
+
+
+
+/*CSS for star ratings*/
+.rating{
+    float: left;
+}
+.rating:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+    clip: rect(0,0,0,0);
+}
+.rating:not(:checked) > label {
+    float: right;
+    width: 1em;
+    padding: 0.1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 200%;
+    line-height: 1.2;
+    color: #ddd;
+    text-shadow: 1px 1px #bbb, 2px 2px #666,
+        .1em .1em .2em rgba(0,0,0,.5);
+}
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+.rating > input:checked ~ label {
+    color: #f70;
+    text-shadow: 1px 1px #c60, 2px 2px #940,
+        .1em .1em .2em rgba(0,0,0,.5);
+}
+.rating:not(:checked) > label:hover,
+.rating:not(:checked)>label:hover ~ label {
+    color: gold;
+    text-shadow: 1px 1px goldenrod, 2px 2px #B57340,
+        .1em .1em .2em rgba(0,0,0,.5);
+}
+.rating>input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+    text-shadow: 1px 1px goldenrod, 2px 2px #B57340,
+        .1em .1em .2em rgba(0,0,0,.5);
+}
+.rating > label:active{
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+.clearfix:before, .clearfix:after {
+    content: " ";
+    display: table;
+}
+clearfix:after {
+    clear: both;
+}

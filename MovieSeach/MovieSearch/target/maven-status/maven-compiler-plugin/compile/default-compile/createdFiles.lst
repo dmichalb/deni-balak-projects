@@ -1,0 +1,5 @@
+dmb\moviesearch\controller\MainController.class
+dmb\moviesearch\data\MovieRepository.class
+dmb\moviesearch\service\ServiceLayer.class
+dmb\moviesearch\entities\Movie.class
+dmb\moviesearch\App.class

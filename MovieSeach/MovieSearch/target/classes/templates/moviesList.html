@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=divice-width">
+        <title>Up Next</title>
+        <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="dist/pretty-checkbox.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;500&display=swap" rel="stylesheet">        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pretty-checkbox/3.0.3/pretty-checkbox.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pretty-checkbox/3.0.3/pretty-checkbox.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pretty-checkbox/2.2.1/pretty.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pretty-checkbox/2.2.1/pretty.css">
+
+
+    </head>
+    <body>
+      <div class="background" style="background-image: url('img/movies.jpg')">
+        <div class="container">
+            <div class="favorites">
+                <a href="#" th:href="@{/}"><button class="homeBtn" id="homeBtn" type="button">Home</button></a>
+            </div>
+            <h1 id="pageTitle">Up Next</h1>
+            <p id="tagLine">Finding your favorites one search at a time.</p>
+          
+            <div id="moviesList">
+                                
+                <h2 id="tableTitle">Your Movies</h2>
+                <table class="table">
+                    <thead>
+                        <tr class="headers2">
+                            <th>Title</th>
+                            <th>Director</th>
+                            <th>MPAA Rating</th>
+                            <th>Year Released</th>
+                            <th>Plot</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="rows" th:each="movie : ${allMovies}">
+                            <td th:text="${movie.title}" id="titleCell">Title</td>
+                            <td th:text="${movie.director}" id="directorCell">Director</td>
+                            <td th:text="${movie.mpaaRating}" id="mpaaCell">MPAA Rating</td>
+                            <td th:text="${movie.yearReleased}" id="yearCell">Year Released</td>
+                            <td th:text="${movie.plot}" id="plotCell">Plot</td>
+                            <td>
+                                <form type="form" action="deleteMovie" method="POST" id="deleteMovie">
+                                    <input type="hidden" id="title" name="title" th:value="${movie.title}"/>
+                                    <button class="btn" id="deleteBtn">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br><br>
+          </div>
+        </div>
+      
+
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script th:src="@{/js/upNext.js}"></script>
+    </body>
+  </div>
+</html>

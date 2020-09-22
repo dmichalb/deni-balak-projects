@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=divice-width">
+        <title>Up Next</title>
+        <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="dist/pretty-checkbox.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;500&display=swap" rel="stylesheet">        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pretty-checkbox/3.0.3/pretty-checkbox.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pretty-checkbox/3.0.3/pretty-checkbox.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pretty-checkbox/2.2.1/pretty.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pretty-checkbox/2.2.1/pretty.css">
+            
+
+    </head>
+    <body>
+      <div class="background" style="background-image: url('img/movies.jpg')">
+        <div class="container">
+          <div class="favorites">
+            <a href="#" th:href="@{/moviesList}"><button class="favBtn" id="favBtn" type="button">My Movies</button></a>
+          </div>
+          <h1 id="pageTitle">Up Next</h1>
+          <p id="tagLine">Finding your favorites one search at a time.</p>
+          
+          <form id="movieForm" autocomplete="off">
+              <div class="form-group" id="formGroup">
+                <label for="searchBar"><i class="material-icons" id="searchIcon">search</i></label>
+                <input class="from-control" type="text" id="movie" placeholder="Search by Title" autocomplete="off">
+                <br>
+              </div>
+              <div class="form-group" id="formGroup2">
+                  <button class="btn" type="submit" id="searchBtn">Search</button>
+              </div>
+          </form>
+        </div>
+        <br>
+
+        <div class="container2">
+          <div id="result">
+              <!--Display Movie Info Here
+                Poster
+                Title
+                Director
+                MPAA Rating
+                Year
+              -->
+          </div>
+            
+            
+             <div class="formDiv">
+            <form type="form" class="favoritesForm" action="/" method="POST">
+                <input autocomplete="false" name="hidden" type="text" style="display:none;">
+                <div class="form-row" id="textInput">
+                    <input class="movieTitle" type="hidden" th:name="title" th:value="${movie.title}">
+                    <input class="movieDirector" type="hidden" th:name="director" th:value="${movie.director}">
+                    <input class="movieYear" type="hidden" th:name="yearReleased" th:value="${movie.yearReleased}">
+                    <input class="movieMPAA" type="hidden" th:name="mpaaRating" th:value="${movie.mpaaRating}">
+                    <input class="moviePlot" type="hidden" th:name="plot" th:value="${movie.plot}">
+                </div>
+
+                <br>
+
+                <div class="form-row" id="favForm">
+                        <div class="pretty p-svg p-toggle">
+                            <input type="checkbox" name="bookmarked"
+                                 th:checked="${movie.bookmarked}" id="bookmark">
+                            <div class="state p-on">
+                                <img  class="svg" src="img/bookmark.svg" alt="bookmark">
+                                <label>Added to Favorites</label>
+                            </div>
+                            <div class="state p-off">
+                                <img class="svg" src="img/bookmark-outline.svg" alt="bookmark-outline">
+                                <label for="bookmarked">Add to Favorites</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    
+                    <div class="form-row" id="starRatings">
+                        <fieldset class="rating">
+                          <legend>Your Rating:</legend>
+
+                          <!--For 5 Stars-->
+                          <input type="radio" id="star5" th:name="rating" 
+                                 th:value="${movie.rating}"
+                          />
+                          <label for="star5" title="Amazing Movie">5 Stars</label>
+
+                          <!--For 4 Stars-->
+                          <input type="radio" id="star4" th:name="rating" 
+                                 th:value="${movie.rating}"
+                          />
+                          <label for="star4" title="Great Movie">4 Stars</label>
+
+                          <!--For 3 Stars-->
+                          <input type="radio" id="star3" th:name="rating" 
+                                 th:value="${movie.rating}"
+                          />
+                          <label for="star3" title="Good Movie">3 Stars</label>
+
+                          <!--For 2 Stars-->
+                          <input type="radio" id="star2" th:name="rating" 
+                                 th:value="${movie.rating}"
+                          />
+                          <label for="star2" title="Okay Movie">2 Stars</label>
+
+                          <!--For 1 Star-->
+                          <input type="radio" id="star1" th:name="rating" 
+                                 th:value="${movie.rating}"
+                          />
+                          <label for="star1" title="Bad Movie">1 Star</label>
+
+                        </fieldset>
+                        <div class="clearfix"></div>
+                    </div>
+                    
+                    <div class="saveClass">
+                      <button class="btn" id="saveBtn">Save</button>
+                    </div>
+            </form>
+            <br><br>
+            </div> 
+        </div>
+
+        
+      </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script th:src="@{/js/upNext.js}"></script>-
+    </body>
+</html>
